@@ -10,14 +10,22 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    const newTags = window.location.hash
+    try {
+      const newTags = window.location.hash
         .split("#tags=")[1]
         .split(",");
 
-    this.state = {
-      tags: newTags,
-      lists: [1, 2, 3]
-    };
+      this.state = {
+        tags: newTags,
+        lists: [1, 2, 3],
+      };
+    } catch (e) {
+      console.log(e);
+      this.state = {
+        tags: [],
+        lists: [1, 2, 3],
+      };
+    }
 
     this.addTag = this.addTag.bind(this);
     this.removeTag = this.removeTag.bind(this);
@@ -44,12 +52,19 @@ class App extends React.Component {
 
   componentDidMount() {
     window.onhashchange = () => {
-      const newTags = window.location.hash
-        .split("#tags=")[1]
-        .split(",");
-      this.setState({
-        tags: newTags
-      });
+      try {
+        const newTags = window.location.hash
+          .split("#tags=")[1]
+          .split(",");
+        this.setState({
+          tags: newTags
+        });
+      } catch (e) {
+        console.log(e);
+        this.setState({
+          tags: []
+        });
+      }
     }
   }
 
