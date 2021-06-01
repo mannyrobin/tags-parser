@@ -1,0 +1,27 @@
+.list-card {
+    margin-left: auto;
+    margin-right: auto;
+
+    .new-tag-input {
+        padding-left: 16px;
+        padding-right: 16px;
+
+        .add-new-tag-button {
+            margin-left: 6px;
+        }
+    }
+
+    .list-item {
+        font-size: 20px;
+        .list-item-delete-action {
+            visibility: hidden;
+        }
+
+        &:hover {
+            cursor: pointer;
+            .list-item-delete-action {
+                visibility: visible;
+            }
+        }
+    }
+}
